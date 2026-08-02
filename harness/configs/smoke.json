@@ -1,0 +1,20 @@
+{
+  "comment": "Milestone-2 gate matrix: prove the axes work end-to-end on one 4090. Not a science run — trajectories/turns are sized for the gate, the real sweep is milestone 3 (configs/sweep.json). fp8_e4m3 without checkpoint scales is a KNOWN-DEGENERATE config on Qwen2.5 (scale=1.0 clips K/V outliers -> token salad); it is kept deliberately as a sensitivity canary: the instrument must score it ~0 while scoring fp16 ~1. NOTE (post-m2): on vLLM 0.19.1 + sm_89 BOTH fp8 formats collapse from turn 0 — a broken kernel path; see runs/m2-smoke and milestone-2.md.",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "served_name": "kvdrift-model",
+  "port": 8001,
+  "preflight": true,
+  "trajectories": 2,
+  "turns": 16,
+  "seed_base": 1000,
+  "max_model_len": 8192,
+  "gpu_memory_utilization": 0.9,
+  "configs": [
+    { "name": "fp16-reuse",         "engine": "vllm", "kv": "fp16",     "prefix_caching": true  },
+    { "name": "fp16-recompute",     "engine": "vllm", "kv": "fp16",     "prefix_caching": false },
+    { "name": "fp8e5m2-reuse",      "engine": "vllm", "kv": "fp8_e5m2", "prefix_caching": true  },
+    { "name": "fp8e5m2-recompute",  "engine": "vllm", "kv": "fp8_e5m2", "prefix_caching": false },
+    { "name": "fp8e4m3-reuse",      "engine": "vllm", "kv": "fp8_e4m3", "prefix_caching": true  },
+    { "name": "fp8e4m3-recompute",  "engine": "vllm", "kv": "fp8_e4m3", "prefix_caching": false }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "comment": "Milestone-4 O-leg: copy-fidelity vs context length, frozen at pre-registration. 3 configs x 2 modes x 8 lengths x 20 reps = 960 single-turn probes. fp16 is the control; int8 (TurboMind) and fp8_e5m2 (vLLM/FlashInfer) are the corruption regimes from m3. Prefix caching off everywhere (single-turn, no reuse axis here).",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "served_name": "kvdrift-model",
+  "port": 8001,
+  "seed_base": 5000,
+  "reps": 20,
+  "modes": ["near", "far"],
+  "lengths": [0, 128, 256, 512, 1024, 2048, 4096, 8192],
+  "max_model_len": 16384,
+  "gpu_memory_utilization": 0.9,
+  "configs": [
+    { "name": "vllm-fp16",    "engine": "vllm",     "kv": "fp16",     "prefix_caching": false },
+    { "name": "vllm-fp8e5m2", "engine": "vllm",     "kv": "fp8_e5m2", "prefix_caching": false },
+    { "name": "lmdeploy-int8", "engine": "lmdeploy", "kv": "int8",    "prefix_caching": false }
+  ]
+}
