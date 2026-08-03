@@ -1,0 +1,189 @@
+{
+  "files": [
+    {
+      "bytes": 55969,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/metrics.prom",
+      "sha256": "043f9ace5f91844a42a7187315e9673eb26eafb32e220af6add4cc1b113b343f"
+    },
+    {
+      "bytes": 356,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/probe.json",
+      "sha256": "dce5f804df74a9c68fe93479c6266e575d05e0127781425fe9b0812d2a3b39e9"
+    },
+    {
+      "bytes": 2080,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/summary.json",
+      "sha256": "bc2f9f76b9295d540008b228a8c67c545ab92b1211e2ca24e8f180de84fdfe21"
+    },
+    {
+      "bytes": 36670,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3000.jsonl",
+      "sha256": "d3ff0540ded4ea9d1f7444864b5e92e7d5e61a5e54efb287cc0d102e9c041f34"
+    },
+    {
+      "bytes": 33189,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3001.jsonl",
+      "sha256": "a50d656cf1fec63284fafb0a31c92574fd3e1127809b8f1fd5424b52e2efa6eb"
+    },
+    {
+      "bytes": 43408,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3002.jsonl",
+      "sha256": "9cd9141587bacdfa647c75e83b109792a5ec1d73bbc4b2129fbfde03661f2797"
+    },
+    {
+      "bytes": 52427,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3003.jsonl",
+      "sha256": "c51c5081977ca3d29b483947b5971694c49e53c6ae3882ae0b013157dbd600fa"
+    },
+    {
+      "bytes": 46702,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3004.jsonl",
+      "sha256": "76acb2eabb58543a06e4ac7a76f1337b8ac9af26c17271c01d0fa5e299201925"
+    },
+    {
+      "bytes": 56006,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/metrics.prom",
+      "sha256": "294eab8f89a8fd4c7d1a8df6da85316ea39fe21776065a3598c83fc61c0b83f6"
+    },
+    {
+      "bytes": 347,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/probe.json",
+      "sha256": "bd822795263c9502ab18a5017c0211f9366013a8f77cef4567e48a91dfac21ba"
+    },
+    {
+      "bytes": 2075,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/summary.json",
+      "sha256": "a5e5e0f59dc2c58e97c8802d7985e4b327bea405fc7b6c060880af8edc0b18f3"
+    },
+    {
+      "bytes": 39904,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/trajectory_3000.jsonl",
+      "sha256": "1879e3040f56ffeba008a1760ff6c6cce6ad21a82891ed599ad680dacbe210bd"
+    },
+    {
+      "bytes": 38093,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/trajectory_3001.jsonl",
+      "sha256": "79d57e90cfd92ccde16628c72f02f45aa9c3d983c9ca28deb5e36cbb854a9a08"
+    },
+    {
+      "bytes": 31520,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/trajectory_3002.jsonl",
+      "sha256": "503a950c58fb7b164cf0590f69aba0ffdd12c7d80d3dca9ce149daffce0dddfd"
+    },
+    {
+      "bytes": 50852,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/trajectory_3003.jsonl",
+      "sha256": "0a52cb57f77cd07f45372ab201cd756733ecd9d110e3b91899247daf2b415819"
+    },
+    {
+      "bytes": 33730,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/trajectory_3004.jsonl",
+      "sha256": "e69ed89956e96e089c17c59ee86cee545aa579acd671aa0960154eb4915fb7ce"
+    },
+    {
+      "bytes": 60436,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/logs/vllm-fp8e4m3-recompute.server.log",
+      "sha256": "72592a3abd42691ab081726adebe3f26198bbed9d3ed4ff597b215515042a526"
+    },
+    {
+      "bytes": 61272,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/logs/vllm-fp8e4m3-reuse.server.log",
+      "sha256": "4ee62c60c4eb35ab6263b6a584a3e21577e3a04863307f06700a02793e45f6be"
+    },
+    {
+      "bytes": 1372,
+      "kind": "results",
+      "path": "m1-sweep-e4m3/run_meta.json",
+      "sha256": "d859f7c156484a6fbf9ac1b5a81e34beee3e5b778621d2e1e018f2e5ae4f8e81"
+    },
+    {
+      "bytes": 229,
+      "kind": "code",
+      "path": "kvdrift/__init__.py",
+      "sha256": "61b6a599170d817af71e560e86703dc5201e830e5b3cbeca86b92e403e9edff7"
+    },
+    {
+      "bytes": 4060,
+      "kind": "code",
+      "path": "kvdrift/client.py",
+      "sha256": "b90a35bd92e7e850b3377edc90d5d2c9a36250276211321e3f5d2972b4261b74"
+    },
+    {
+      "bytes": 21173,
+      "kind": "code",
+      "path": "kvdrift/main.py",
+      "sha256": "a6264189c378532570ab82317278a15825661022b84203521facffa7ee51eee7"
+    },
+    {
+      "bytes": 2638,
+      "kind": "code",
+      "path": "kvdrift/manifest.py",
+      "sha256": "4275c5f1194608e71194dbc7f4e5c657edb254f269fdecc381389bed9559b1e5"
+    },
+    {
+      "bytes": 5097,
+      "kind": "code",
+      "path": "kvdrift/onset.py",
+      "sha256": "a3bb15e3dbad3d9e573f1bc354f879077141555405f9be815d7c69420f1f2b46"
+    },
+    {
+      "bytes": 3401,
+      "kind": "code",
+      "path": "kvdrift/runner.py",
+      "sha256": "bb0ad23a5a93c4ee703e44bc4841901d02a76540a1ba26042baa2896d41fa64d"
+    },
+    {
+      "bytes": 5631,
+      "kind": "code",
+      "path": "kvdrift/scoring.py",
+      "sha256": "3817182ea7b8d04b23d04a57ff045f523d6ac86cbcca8b6d5025b4fc2dd38d84"
+    },
+    {
+      "bytes": 5754,
+      "kind": "code",
+      "path": "kvdrift/serve.py",
+      "sha256": "d181ec51de9a42a403c131a8afe83781cb04bbbaa9431b6f7dd52b6aa753cae6"
+    },
+    {
+      "bytes": 8598,
+      "kind": "code",
+      "path": "kvdrift/trajectory.py",
+      "sha256": "ea0cafef736bc13694a6c97e4fac40ba9a103a0368d596b6592a36ea084c7e24"
+    },
+    {
+      "bytes": 10444,
+      "kind": "code",
+      "path": "kvdrift/warehouse.py",
+      "sha256": "39a84873eb3d7fe399bba8e6fd3d03357e0d2f1014bbc9b46cdd94023a153d6b"
+    }
+  ],
+  "meta": {
+    "created_utc": "2026-08-03T00:40:52Z",
+    "gpu": "NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB",
+    "harness": "kv-drift harness",
+    "matrix_sha256": "63ef5081350337d578c930b3526cf6d845a4d2a50f7c8ff316589d2f1a065a80",
+    "versions": {
+      "lmdeploy": "0.15.0",
+      "python": "3.12.3",
+      "vllm": "0.26.0"
+    }
+  }
+}

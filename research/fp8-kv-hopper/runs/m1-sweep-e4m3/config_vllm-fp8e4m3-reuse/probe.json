@@ -1,0 +1,14 @@
+{
+  "coherence_raw": "The quick brown fox jumps over the lazy dog.",
+  "coherence_word_overlap": 8,
+  "copy_text_ok": false,
+  "copy_text_raw": "KVDRIFT-VLLM-FPPEE4MPPREUSEP4P",
+  "copy_tool_exact": false,
+  "nonce": "KVDRIFT-VLLM-FP8E4M3-REUSE-7429",
+  "text_ok": true,
+  "tool_ok": false,
+  "tool_raw": {
+    "args": null,
+    "name": null
+  }
+}

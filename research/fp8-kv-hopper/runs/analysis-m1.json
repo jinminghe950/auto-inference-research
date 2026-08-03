@@ -1,0 +1,380 @@
+{
+  "classification_inputs": {
+    "e4m3": {
+      "action_error": 1.0,
+      "no_call": 1.0,
+      "onset_clean": false,
+      "onset_dead": true,
+      "onset_present": true,
+      "salad": false,
+      "sweep_complete": true,
+      "traj_clean": false,
+      "traj_dead": true
+    },
+    "e5m2": {
+      "action_error": null,
+      "no_call": null,
+      "onset_clean": false,
+      "onset_dead": false,
+      "onset_present": false,
+      "salad": false,
+      "sweep_complete": null,
+      "traj_clean": false,
+      "traj_dead": false
+    }
+  },
+  "e4m3_label": "PERSISTS",
+  "instrument_sanity": "PASS",
+  "onset": {
+    "e4m3": {
+      "cells": [
+        {
+          "approx_tokens": 0,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 128,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 256,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 512,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 1024,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 2048,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 4096,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 8192,
+          "call_present_rate": 0.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 0,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 128,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 256,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 512,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 1024,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 2048,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 4096,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        },
+        {
+          "approx_tokens": 8192,
+          "call_present_rate": 0.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 0.0,
+          "sku_exact_rate": 0.0,
+          "tool_correct_rate": 0.0
+        }
+      ],
+      "n_rows": 320,
+      "present": true
+    },
+    "e5m2": {
+      "cells": [],
+      "n_rows": 0,
+      "present": false
+    },
+    "fp16": {
+      "cells": [
+        {
+          "approx_tokens": 0,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 128,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 256,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 512,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 1024,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 2048,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 4096,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 8192,
+          "call_present_rate": 1.0,
+          "mode": "far",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 0,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 128,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 256,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 512,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 1024,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 2048,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 4096,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        },
+        {
+          "approx_tokens": 8192,
+          "call_present_rate": 1.0,
+          "mode": "near",
+          "n": 20,
+          "parse_valid_rate": 1.0,
+          "sku_exact_rate": 1.0,
+          "tool_correct_rate": 1.0
+        }
+      ],
+      "n_rows": 320,
+      "present": true
+    }
+  },
+  "regime": "ERROR",
+  "sweep": {
+    "e4m3": {
+      "action_error": 1.0,
+      "complete": true,
+      "configs": [
+        "vllm-fp8e4m3-reuse",
+        "vllm-fp8e4m3-recompute"
+      ],
+      "n_tool_turns": 400,
+      "no_call": 1.0,
+      "present": true,
+      "probe_text_ok": {
+        "vllm-fp8e4m3-recompute": true,
+        "vllm-fp8e4m3-reuse": true
+      }
+    },
+    "e5m2": {
+      "action_error": null,
+      "complete": null,
+      "configs": [
+        "vllm-fp8e5m2-reuse",
+        "vllm-fp8e5m2-recompute"
+      ],
+      "n_tool_turns": 0,
+      "no_call": null,
+      "present": false,
+      "probe_text_ok": {}
+    },
+    "fp16": {
+      "action_error": 0.005714285714285714,
+      "complete": true,
+      "configs": [
+        "vllm-fp16-reuse",
+        "vllm-fp16-recompute"
+      ],
+      "n_tool_turns": 350,
+      "no_call": 0.005714285714285714,
+      "present": true,
+      "probe_text_ok": {
+        "vllm-fp16-recompute": true,
+        "vllm-fp16-reuse": true
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+[sweep] gpu: NVIDIA H100 80GB HBM3, 580.126.09
+[sweep] building venv vllm (vllm==0.26.0)
+[sweep] building venv lmdeploy (lmdeploy==0.15.0)
+[kvdrift] === config vllm-fp16-reuse: engine=vllm kv=fp16 prefix_caching=True ===
+[kvdrift] === config vllm-fp16-recompute: engine=vllm kv=fp16 prefix_caching=False ===
+[kvdrift][verify] G0 pre-flight probes: PASS
+[kvdrift][verify] G1 completeness: PASS
+[kvdrift][verify] G2 prefix-cache toggle evidence: PASS
+[kvdrift][verify] G3 content-addressed manifest: PASS
+[kvdrift][verify] G4 matrix-frozen thresholds: PASS
+GATE M3: PASS (/tmp/m1-sweep-fp16)
+SWEEP_fp16_EXIT=0
+[sweep] gpu: NVIDIA H100 80GB HBM3, 580.126.09
+[kvdrift] === config vllm-fp8e4m3-reuse: engine=vllm kv=fp8_e4m3 prefix_caching=True ===
+[kvdrift] === config vllm-fp8e4m3-recompute: engine=vllm kv=fp8_e4m3 prefix_caching=False ===
+[kvdrift][verify] G0 pre-flight probes: PASS
+[kvdrift][verify] G1 completeness: PASS
+[kvdrift][verify] G2 prefix-cache toggle evidence: PASS
+[kvdrift][verify] G3 content-addressed manifest: PASS
+GATE M3: PASS (/tmp/m1-sweep-e4m3)
+SWEEP_e4m3_EXIT=0
+[sweep] gpu: NVIDIA H100 80GB HBM3, 580.126.09
+[kvdrift] === config vllm-fp8e5m2-reuse: engine=vllm kv=fp8_e5m2 prefix_caching=True ===
+Traceback (most recent call last):
+SWEEP_e5m2_EXIT=1
+[kvdrift] === onset vllm-fp16: engine=vllm kv=fp16 ===
+ONSET_fp16_EXIT=0
+[kvdrift] === onset vllm-fp8e4m3: engine=vllm kv=fp8_e4m3 ===
+ONSET_e4m3_EXIT=0
+[kvdrift] === onset vllm-fp8e5m2: engine=vllm kv=fp8_e5m2 ===
+RUN_FINISHED: {"launched": true, "running": false, "exit_code": 1}

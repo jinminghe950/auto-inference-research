@@ -1,0 +1,297 @@
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345] 
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345]        █     █     █▄   ▄█
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.26.0
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345]   █▄█▀ █     █     █     █  model   Qwen/Qwen2.5-7B-Instruct
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:345] 
+(APIServer pid=8422) INFO 08-03 00:51:58 [api_utils.py:273] non-default args: {'model_tag': 'Qwen/Qwen2.5-7B-Instruct', 'enable_auto_tool_choice': True, 'tool_call_parser': 'hermes', 'host': '127.0.0.1', 'port': 8001, 'model': 'Qwen/Qwen2.5-7B-Instruct', 'max_model_len': 16384, 'served_model_name': ['kvdrift-model'], 'gpu_memory_utilization': 0.9, 'kv_cache_dtype': 'fp8_e5m2', 'enable_prefix_caching': False}
+(APIServer pid=8422) WARNING 08-03 00:51:58 [envs.py:2096] Unknown vLLM environment variable detected: VLLM_BIN
+(APIServer pid=8422) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(APIServer pid=8422) INFO 08-03 00:52:00 [model.py:623] Resolved architecture: Qwen2ForCausalLM
+(APIServer pid=8422) INFO 08-03 00:52:00 [model.py:1788] Using max model len 16384
+(APIServer pid=8422) INFO 08-03 00:52:00 [cache.py:285] Using fp8_e5m2 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(APIServer pid=8422) INFO 08-03 00:52:00 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(APIServer pid=8422) INFO 08-03 00:52:00 [vllm.py:1109] Asynchronous scheduling is enabled.
+(APIServer pid=8422) INFO 08-03 00:52:00 [kernel.py:295] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(EngineCore pid=8623) INFO 08-03 00:52:11 [core.py:116] Initializing a V1 LLM engine (v0.26.0) with config: model='Qwen/Qwen2.5-7B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=16384, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=fp8_e5m2, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=kvdrift-model, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::qwen_gdn_attention_core', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=8623) INFO 08-03 00:52:12 [parallel_state.py:1615] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.21.0.2:60821 backend=nccl
+(EngineCore pid=8623) INFO 08-03 00:52:12 [parallel_state.py:1946] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=8623) INFO 08-03 00:52:12 [gpu_worker.py:378] Using V2 Model Runner
+(EngineCore pid=8623) INFO 08-03 00:52:13 [model_runner.py:284] Loading model from scratch...
+(EngineCore pid=8623) INFO 08-03 00:52:14 [cuda.py:482] Using FLASHINFER attention backend out of potential backends: ['FLASHINFER', 'TRITON_ATTN'].
+(EngineCore pid=8623) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=8623) INFO 08-03 00:52:16 [weight_utils.py:869] Filesystem type for checkpoints: XFS. Checkpoint size: 14.19 GiB. Available RAM: 1893.08 GiB.
+(EngineCore pid=8623) INFO 08-03 00:52:16 [weight_utils.py:892] Auto-prefetch is disabled because the filesystem (XFS) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(EngineCore pid=8623) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=8623) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.58it/s]
+(EngineCore pid=8623) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.77it/s]
+(EngineCore pid=8623) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:01<00:00,  1.71it/s]
+(EngineCore pid=8623) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.92it/s]
+(EngineCore pid=8623) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.83it/s]
+(EngineCore pid=8623) 
+(EngineCore pid=8623) INFO 08-03 00:52:18 [default_loader.py:430] Loading weights took 2.19 seconds
+(EngineCore pid=8623) INFO 08-03 00:52:19 [model_runner.py:305] Model loading took 14.29 GiB and 5.861643 seconds
+(EngineCore pid=8623) INFO 08-03 00:52:19 [topk_topp_sampler.py:55] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=8623) INFO 08-03 00:52:23 [backends.py:1094] Using cache directory: /root/.cache/vllm/torch_compile_cache/5c03dac3ac/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore pid=8623) INFO 08-03 00:52:23 [backends.py:1155] Dynamo bytecode transform time: 4.48 s
+(EngineCore pid=8623) INFO 08-03 00:52:27 [backends.py:378] Cache the graph of compile range (1, 8192) for later use
+(EngineCore pid=8623) INFO 08-03 00:52:31 [backends.py:393] Compiling a graph for compile range (1, 8192) takes 7.24 s
+(EngineCore pid=8623) INFO 08-03 00:52:34 [decorators.py:708] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/1a2965314ceaea5015d2edc437bc8f3d686747290c0fe71fabb2cee3803cda34/rank_0_0/model
+(EngineCore pid=8623) INFO 08-03 00:52:34 [monitor.py:53] torch.compile took 14.82 s in total
+(EngineCore pid=8623) INFO 08-03 00:52:34 [monitor.py:81] Initial profiling/warmup run took 0.46 s
+(EngineCore pid=8623) INFO 08-03 00:52:36 [gpu_worker.py:560] Available KV cache memory: 55.62 GiB
+(EngineCore pid=8623) INFO 08-03 00:52:36 [kv_cache_utils.py:2177] GPU KV cache size: 2,082,960 tokens
+(EngineCore pid=8623) INFO 08-03 00:52:36 [kv_cache_utils.py:2178] Maximum concurrency for 16,384 tokens per request: 127.13x
+(EngineCore pid=8623) INFO 08-03 00:52:36 [flashinfer.py:822] FlashInfer resolved query dtypes: prefill=torch.float8_e5m2, decode=torch.bfloat16, decode_backend=xqa, kv_cache_dtype=torch.float8_e5m2, arch=sm90
+(EngineCore pid=8623) INFO 08-03 00:52:36 [kernel_warmup.py:227] Using FlashInfer autotune cache file: /root/.cache/vllm/flashinfer_autotune_cache/0.6.14/90a/0ec01b95d8aaecd6ed1c507a0267785d1e7291b3d4ace374981bd077465ac414/autotune_configs.json
+(EngineCore pid=8623) 2026-08-03 00:52:36,215 - INFO - autotuner.py:651 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(EngineCore pid=8623) 2026-08-03 00:52:36,547 - INFO - autotuner.py:674 - flashinfer.jit: [Autotuner]: Autotuning process ends
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330] EngineCore failed to start.
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330] Traceback (most recent call last):
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1299, in run_engine_core
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1065, in __init__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     super().__init__(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 136, in __init__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 324, in _initialize_kv_caches
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     self.model_executor.initialize_from_config(kv_cache_configs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 124, in initialize_from_config
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     compilation_times: list[CompilationTimes] = self.collective_rpc(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]                                                 ^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/executor/uniproc_executor.py", line 92, in collective_rpc
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 780, in compile_or_warm_up_model
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     kernel_warmup(self)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/warmup/kernel_warmup.py", line 121, in kernel_warmup
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     flashinfer_autotune(worker.model_runner)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/warmup/kernel_warmup.py", line 244, in flashinfer_autotune
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     runner._dummy_run(**dummy_run_kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/eplb_utils.py", line 38, in wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     result = fn(self, *args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 584, in _dummy_run
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     self.execute_model(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1361, in execute_model
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     model_output = self.model(**model_inputs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return self._call_impl(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return forward_call(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/qwen2.py", line 491, in forward
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     hidden_states = self.model(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]                     ^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 520, in __call__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return self.aot_compiled_fn(self, *args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 224, in __call__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return self.fn(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/qwen2.py", line 397, in forward
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     def forward(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/compilation/caching.py", line 217, in __call__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return self.optimized_call(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "<string>", line 153, in execution_fn
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "<string>", line 6, in __vllm_inlined_submods__1
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/torch/_ops.py", line 1269, in __call__
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return self._op(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/layers/attention/kv_transfer_utils.py", line 40, in wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return func(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/layers/attention/attention.py", line 835, in unified_attention_with_output
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     self.impl.forward(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/attention/backends/flashinfer.py", line 1925, in forward
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     prefill_wrapper.run(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/api_logging.py", line 2333, in _auto_dump_wrapper
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     return _inner(*args, **kwargs)
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]            ^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/prefill.py", line 2344, in run
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     _check_cached_qkv_data_type(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/utils.py", line 320, in _check_cached_qkv_data_type
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330]     raise ValueError(
+(EngineCore pid=8623) ERROR 08-03 00:52:36 [core.py:1330] ValueError: The dtype of q torch.float8_e4m3fn does not match the q_data_type torch.float8_e5m2 specified in plan function.
+(EngineCore pid=8623) Process EngineCore:
+(EngineCore pid=8623) Traceback (most recent call last):
+(EngineCore pid=8623)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=8623)     self.run()
+(EngineCore pid=8623)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=8623)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1334, in run_engine_core
+(EngineCore pid=8623)     raise e
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1299, in run_engine_core
+(EngineCore pid=8623)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=8623)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1065, in __init__
+(EngineCore pid=8623)     super().__init__(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 136, in __init__
+(EngineCore pid=8623)     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=8623)                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 324, in _initialize_kv_caches
+(EngineCore pid=8623)     self.model_executor.initialize_from_config(kv_cache_configs)
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 124, in initialize_from_config
+(EngineCore pid=8623)     compilation_times: list[CompilationTimes] = self.collective_rpc(
+(EngineCore pid=8623)                                                 ^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/executor/uniproc_executor.py", line 92, in collective_rpc
+(EngineCore pid=8623)     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=8623)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 780, in compile_or_warm_up_model
+(EngineCore pid=8623)     kernel_warmup(self)
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/warmup/kernel_warmup.py", line 121, in kernel_warmup
+(EngineCore pid=8623)     flashinfer_autotune(worker.model_runner)
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/warmup/kernel_warmup.py", line 244, in flashinfer_autotune
+(EngineCore pid=8623)     runner._dummy_run(**dummy_run_kwargs)
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/eplb_utils.py", line 38, in wrapper
+(EngineCore pid=8623)     result = fn(self, *args, **kwargs)
+(EngineCore pid=8623)              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 584, in _dummy_run
+(EngineCore pid=8623)     self.execute_model(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1361, in execute_model
+(EngineCore pid=8623)     model_output = self.model(**model_inputs)
+(EngineCore pid=8623)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+(EngineCore pid=8623)     return self._call_impl(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+(EngineCore pid=8623)     return forward_call(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/qwen2.py", line 491, in forward
+(EngineCore pid=8623)     hidden_states = self.model(
+(EngineCore pid=8623)                     ^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 520, in __call__
+(EngineCore pid=8623)     return self.aot_compiled_fn(self, *args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 224, in __call__
+(EngineCore pid=8623)     return self.fn(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/models/qwen2.py", line 397, in forward
+(EngineCore pid=8623)     def forward(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/compilation/caching.py", line 217, in __call__
+(EngineCore pid=8623)     return self.optimized_call(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "<string>", line 153, in execution_fn
+(EngineCore pid=8623)   File "<string>", line 6, in __vllm_inlined_submods__1
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/torch/_ops.py", line 1269, in __call__
+(EngineCore pid=8623)     return self._op(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/layers/attention/kv_transfer_utils.py", line 40, in wrapper
+(EngineCore pid=8623)     return func(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/model_executor/layers/attention/attention.py", line 835, in unified_attention_with_output
+(EngineCore pid=8623)     self.impl.forward(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/attention/backends/flashinfer.py", line 1925, in forward
+(EngineCore pid=8623)     prefill_wrapper.run(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/api_logging.py", line 2333, in _auto_dump_wrapper
+(EngineCore pid=8623)     return _inner(*args, **kwargs)
+(EngineCore pid=8623)            ^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/prefill.py", line 2344, in run
+(EngineCore pid=8623)     _check_cached_qkv_data_type(
+(EngineCore pid=8623)   File "/venvs/vllm/lib/python3.12/site-packages/flashinfer/utils.py", line 320, in _check_cached_qkv_data_type
+(EngineCore pid=8623)     raise ValueError(
+(EngineCore pid=8623) ValueError: The dtype of q torch.float8_e4m3fn does not match the q_data_type torch.float8_e5m2 specified in plan function.
+[rank0]:[W803 00:52:37.953838627 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=8422) Traceback (most recent call last):
+(APIServer pid=8422)   File "/venvs/vllm/bin/vllm", line 6, in <module>
+(APIServer pid=8422)     sys.exit(main())
+(APIServer pid=8422)              ^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 95, in main
+(APIServer pid=8422)     args.dispatch_function(args)
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 148, in cmd
+(APIServer pid=8422)     uvloop.run(run_server(args))
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=8422)     return __asyncio.run(
+(APIServer pid=8422)            ^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+(APIServer pid=8422)     return runner.run(main)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=8422)     return self._loop.run_until_complete(task)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=8422)     return await main
+(APIServer pid=8422)            ^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 759, in run_server
+(APIServer pid=8422)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 773, in run_server_worker
+(APIServer pid=8422)     async with build_async_engine_client(
+(APIServer pid=8422)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=8422)     return await anext(self.gen)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 139, in build_async_engine_client
+(APIServer pid=8422)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=8422)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=8422)     return await anext(self.gen)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 175, in build_async_engine_client_from_engine_args
+(APIServer pid=8422)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=8422)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=8422)     return cls(
+(APIServer pid=8422)            ^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=8422)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=8422)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=8422)     return func(*args, **kwargs)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 132, in make_async_mp_client
+(APIServer pid=8422)     return AsyncMPClient(*client_args)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=8422)     return func(*args, **kwargs)
+(APIServer pid=8422)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 963, in __init__
+(APIServer pid=8422)     super().__init__(
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 573, in __init__
+(APIServer pid=8422)     with launch_core_engines(
+(APIServer pid=8422)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=8422)     next(self.gen)
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1213, in launch_core_engines
+(APIServer pid=8422)     wait_for_engine_startup(
+(APIServer pid=8422)   File "/venvs/vllm/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1272, in wait_for_engine_startup
+(APIServer pid=8422)     raise RuntimeError(
+(APIServer pid=8422) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

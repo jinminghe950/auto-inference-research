@@ -1,9 +1,9 @@
 # Milestone 1 — H100 probe + sweep: is the fp8-KV tool-calling death hardware-conditional?
 
-**Status: pre-registered.** Everything above §Results is frozen at this
-commit, before any data exists; the commit ordering is the proof.
-Amendments only via the Deviations log, committed before the data they
-govern.
+**Status: EXECUTED — machine gates verified locally; results in
+§Results.** Everything above §Results was frozen at the pre-registration
+commit (71bba72), before any data existed; the commit ordering is the
+proof. Amendments only via the Deviations log.
 
 ## Questions under test
 
@@ -186,4 +186,132 @@ attention. Program spend to date: $0.
 
 ## Deviations log
 
-(none yet)
+- **A1 (2026-08-03, collection phase, after all data production —
+  infra).** The frozen /run command's final copy step assumed
+  `/workspace/harness/results/` existed; on this pod's fresh volume it
+  did not, so every `cp` failed (`cannot create directory`) while all six
+  group dirs remained intact in pod-local `/tmp`. Recovery: a second
+  control-plane /run with `mkdir -p /workspace/harness/results` plus the
+  identical copy loop (all six `COPY_OK` confirmed). No frozen file was
+  touched and no data was re-produced — the deviation is confined to
+  moving already-written artifacts into fetchable space. Consequence:
+  the control plane tees every /run to `/workspace/run.log`, so the
+  recovery run overwrote the original run.log before its self-copy line
+  executed. The original operational log survives as (a) the
+  monitor-captured marker stream, landed as `runs/m1-monitor-events.log`
+  (sha256 4c71b225…), and (b) the e5m2 traceback excerpt fetched from
+  the live run.log before the overwrite, quoted in §Results. All
+  scientific artifacts (trajectories, probes, onset rows, server logs,
+  manifests, run_meta) never lived in run.log and are unaffected.
+
+## Results (frozen analyzers; artifacts in `runs/`)
+
+Executor: Runpod pod `6263ewex81sh10`, NVIDIA H100 80GB HBM3 (sm_90),
+driver 580.126.09 / CUDA 13.0, datacenter AP-IN-1, SECURE, 00:22–00:57
+UTC 2026-08-03. vLLM 0.26.0 (pip wheel), torch 2.11.0, Python 3.12,
+Qwen/Qwen2.5-7B-Instruct. Machine gates were evaluated on-pod and
+re-verified locally on the collected copies; the local verdict is the
+one reported.
+
+| group | gate verdict (local) | outcome |
+|---|---|---|
+| m1-sweep-fp16 | G0–G4 **PASS** | control clean: action_error 0.006 [0.000,0.017] |
+| m1-sweep-e4m3 | G0–G3 **PASS** | **silent total tool-call death**: action_error 1.000 [1.000,1.000] |
+| m1-sweep-e5m2 | no data — engine never started | **ERROR** (registered class): startup crash |
+| m1-onset-fp16 | rows 320/320 + manifest **PASS** | sku_exact 1.00, call_present 1.00 at every cell |
+| m1-onset-e4m3 | rows 320/320 + manifest **PASS** | call_present 0.00 at **every** cell (16/16) |
+| m1-onset-e5m2 | no data — engine never started | **ERROR** (registered class): startup crash |
+
+Registered classification (frozen `analysis/analyze_m1.py`, output
+`runs/analysis-m1.json` sha256 83bec634…): instrument_sanity **PASS**;
+**e5m2 regime on sm_90 = ERROR**; **e4m3 label = PERSISTS**. The
+milestone-2 condition (MIXED) is **not triggered**.
+
+### e5m2: vLLM 0.26.0 cannot serve `fp8_e5m2` on H100 at all
+
+Both e5m2 groups died identically during FlashInfer autotune warmup,
+before serving a single request. Root cause from the manifested server
+log (`runs/m1-sweep-e5m2/logs/vllm-fp8e5m2-reuse.server.log`, sha256
+424aeacf…; onset twin 221a258e…):
+
+```
+INFO [cuda.py:482] Using FLASHINFER attention backend out of potential
+  backends: ['FLASHINFER', 'TRITON_ATTN'].
+INFO [flashinfer.py:822] FlashInfer resolved query dtypes:
+  prefill=torch.float8_e5m2, decode=torch.bfloat16, decode_backend=xqa,
+  kv_cache_dtype=torch.float8_e5m2, arch=sm90
+...
+ValueError: The dtype of q torch.float8_e4m3fn does not match the
+  q_data_type torch.float8_e5m2 specified in plan function.
+RuntimeError: Engine core initialization failed.
+```
+
+On sm_90 the FP8-Q prefill path plans FlashInfer with
+`q_data_type=e5m2` (following the KV dtype) but vLLM's query
+quantization emits `float8_e4m3fn` unconditionally; FlashInfer's dtype
+check rejects the mismatch and the engine core dies. The operational
+traceback (captured from the live run.log before the A1 overwrite):
+`serve.py line 107: RuntimeError: vllm exited during startup (code 1)`,
+for both the sweep (`SWEEP_e5m2_EXIT=1`) and onset
+(`ONSET_e5m2_EXIT=1`) groups. So the Ada/Ampere silent killer is not
+reachable on Hopper at v0.26.0 — the flag fails **loudly** (an
+unreported upstream bug: the latest release cannot serve e5m2 on the
+hardware where fp8-KV is marketed).
+
+### e4m3: the marketed path silently kills tool calling completely
+
+The configuration vLLM's 2026-04-22 blog calls "ready to be the default
+starting point" (calibration-free e4m3, FA3 on Hopper — backend line in
+the manifested server log: `Using FLASH_ATTN attention backend` +
+`Using FlashAttention version 3`) reproduces the case study's silent
+death signature exactly, at 7B, on the agentic channels:
+
+- **Trajectories** (5 seeds × 40 turns × both cache modes, G0–G3 PASS):
+  action_error **1.000 [1.000, 1.000]**, no_call 1.000, in every turn
+  bin — flat from turn 0, no depth compounding. fp16 twin: 0.006.
+- **Onset** (320 probes): call_present **0.00 in all 16 cells**,
+  including the ~40-token minimum context — no context cliff; the
+  channel is dead on arrival.
+- **Silence**: G0 coherence passes (word overlap 8/9 — fluent prose).
+  The probe records the phenomenology: exact-echo of
+  `KVDRIFT-VLLM-FP8E4M3-REUSE-7429` returns
+  `KVDRIFT-VLLM-FPPEE4MPPREUSEP4P` (character-level copy corruption),
+  and tool turns emit mangled call markup (e.g.
+  `<functionlookup_item', {"sku": "5555>>` — trajectory_3000 turn 0)
+  that no parser can accept: structural corruption of the call format,
+  not call suppression by choice.
+
+Attribution is tuple-scoped per METHOD.md: (vLLM 0.26.0, H100 sm_90,
+FA3 native-fp8 path, Qwen2.5-7B-Instruct, calibration-free e4m3) →
+total silent agentic death. Combined with the case study's
+(0.26.0, sm_89/sm_80, FlashInfer FA2 dequant path, e5m2) → same death,
+the silent failure now spans both fp8 formats and three attention
+kernel families for this model, consistent with the model-conditional
+numerics interpretation (Qwen2.5-7B KV outlier structure vs
+calibration-free scale-1.0 fp8) rather than any single kernel defect —
+though this milestone alone cannot exclude an FA3-specific numeric bug;
+the mechanism claim inherits the case study's cross-condition evidence.
+
+### Answer to the milestone questions
+
+- **Q1 (persistence)**: not persistence but **escalation-to-loud**:
+  e5m2 is unserveable on sm_90 (ERROR), so the silent regime is
+  Ada/Ampere-specific for e5m2 — by accident of a dtype-plumbing bug,
+  not by numerics.
+- **Q2 (marketed-path audit)**: calibration-free e4m3 on Hopper —
+  vLLM's recommended default-ready configuration — **silently zeroes
+  the tool-call channel at 7B** while the blog's reasoning benchmarks
+  (≥8B, no structured output) show near-lossless. The "near-lossless"
+  claim does not transfer to the agentic channel at this scale.
+- **Q3 (attribution)**: backend selection captured per leg from
+  manifested logs: fp16→FLASH_ATTN, e4m3→FLASH_ATTN/FA3 (native fp8),
+  e5m2→FLASHINFER (FP8-Q, crash). Note the deployed priority list
+  (`FLASH_ATTN` first on sm_90 for supported dtypes) differs from the
+  collision scan's source-reading prediction (FLASHINFER first) —
+  exactly why the pre-registration required logging over documentation.
+
+## Cost (actual)
+
+Pod 00:22:26–00:56:48 UTC ≈ 0.57 h × $2.99 ≈ **$1.71** (vs $15
+stop-loss; $7–9 estimate — the e5m2 crashes refunded ~40 min of
+projected serving time). Program GPU spend to date ≈ **$1.71** of $150.

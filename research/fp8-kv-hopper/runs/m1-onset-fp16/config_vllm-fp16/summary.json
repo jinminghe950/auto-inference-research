@@ -1,0 +1,122 @@
+{
+  "by_length": [
+    {
+      "approx_tokens": 0,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 128,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 256,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 512,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 1024,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 2048,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 4096,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 8192,
+      "call_present_rate": 1.0,
+      "mode": "far",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 0,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 128,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 256,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 512,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 1024,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 2048,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 4096,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    },
+    {
+      "approx_tokens": 8192,
+      "call_present_rate": 1.0,
+      "mode": "near",
+      "n": 20,
+      "sku_exact_rate": 1.0
+    }
+  ],
+  "config": {
+    "engine": "vllm",
+    "kv": "fp16",
+    "name": "vllm-fp16",
+    "prefix_caching": false
+  }
+}

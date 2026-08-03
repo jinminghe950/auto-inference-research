@@ -1,0 +1,734 @@
+{
+  "bins": [
+    [
+      0,
+      9
+    ],
+    [
+      10,
+      19
+    ],
+    [
+      20,
+      29
+    ],
+    [
+      30,
+      39
+    ]
+  ],
+  "boot_n": 10000,
+  "boot_seed": 20260802,
+  "configs": {
+    "vllm-fp8e4m3-recompute": {
+      "channels": {
+        "action_error": {
+          "aggregate": 1.0,
+          "aggregate_ci95": [
+            1.0,
+            1.0
+          ],
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            }
+          ]
+        },
+        "args_wrong": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "exec_error": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "no_call": {
+          "aggregate": 1.0,
+          "aggregate_ci95": [
+            1.0,
+            1.0
+          ],
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            }
+          ]
+        },
+        "overcall": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "parse_invalid": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "recall_miss": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "wrong_tool": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        }
+      },
+      "h1_slope_per_turn": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "slope": 0.0
+      },
+      "n_seeds": 5
+    },
+    "vllm-fp8e4m3-reuse": {
+      "channels": {
+        "action_error": {
+          "aggregate": 1.0,
+          "aggregate_ci95": [
+            1.0,
+            1.0
+          ],
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            }
+          ]
+        },
+        "args_wrong": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "exec_error": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "no_call": {
+          "aggregate": 1.0,
+          "aggregate_ci95": [
+            1.0,
+            1.0
+          ],
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "rate": 1.0
+            }
+          ]
+        },
+        "overcall": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "parse_invalid": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "recall_miss": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        },
+        "wrong_tool": {
+          "aggregate": null,
+          "aggregate_ci95": null,
+          "by_bin": [
+            {
+              "bin": [
+                0,
+                9
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                10,
+                19
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                20,
+                29
+              ],
+              "ci95": null,
+              "rate": null
+            },
+            {
+              "bin": [
+                30,
+                39
+              ],
+              "ci95": null,
+              "rate": null
+            }
+          ]
+        }
+      },
+      "h1_slope_per_turn": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "slope": 0.0
+      },
+      "n_seeds": 5
+    }
+  },
+  "h2_contrasts": {
+    "vllm-fp8e4m3": {
+      "aggregate": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "reuse_minus_recompute": 0.0
+      },
+      "deepest_bin": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "reuse_minus_recompute": 0.0
+      }
+    }
+  }
+}

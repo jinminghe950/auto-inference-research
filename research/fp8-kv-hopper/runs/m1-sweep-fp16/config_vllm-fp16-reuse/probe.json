@@ -1,0 +1,16 @@
+{
+  "coherence_raw": "The quick brown fox jumps over the lazy dog.",
+  "coherence_word_overlap": 8,
+  "copy_text_ok": true,
+  "copy_text_raw": "KVDRIFT-VLLM-FP16-REUSE-7429",
+  "copy_tool_exact": true,
+  "nonce": "KVDRIFT-VLLM-FP16-REUSE-7429",
+  "text_ok": true,
+  "tool_ok": true,
+  "tool_raw": {
+    "args": {
+      "sku": "SKU-1234"
+    },
+    "name": "lookup_item"
+  }
+}

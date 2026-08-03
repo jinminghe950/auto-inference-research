@@ -1,0 +1,189 @@
+{
+  "files": [
+    {
+      "bytes": 55932,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/metrics.prom",
+      "sha256": "4bedbe1c02f04bba20c1105f1ffb2e146bd771da297a1dc98034244315984d42"
+    },
+    {
+      "bytes": 383,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/probe.json",
+      "sha256": "3b0a8b8bcdffa8de37b8e060eb843fb3dfdf72a15a313720200e38f893d85084"
+    },
+    {
+      "bytes": 2065,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/summary.json",
+      "sha256": "467a2be8fce453ca4ffb9261c55690fe1a52eb3d96576fb32e268b66268cab74"
+    },
+    {
+      "bytes": 40262,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/trajectory_3000.jsonl",
+      "sha256": "4f74702f166e3dac352e5067407af2a80186815da2646322121329c49cd5232b"
+    },
+    {
+      "bytes": 40681,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/trajectory_3001.jsonl",
+      "sha256": "b3fd1ea537e14b0d4ed500448d236d54f7f140010ef1e447450a49b4cec07ff7"
+    },
+    {
+      "bytes": 40521,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/trajectory_3002.jsonl",
+      "sha256": "f28eb9cfd8cb0489ba7a9603d52c47fe2aa158bb089278b52be469d5333a980e"
+    },
+    {
+      "bytes": 40669,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/trajectory_3003.jsonl",
+      "sha256": "fea276912e37c166982dc81f6d0ae4c850fa828dda9cee00d7b75fd5f219f46a"
+    },
+    {
+      "bytes": 40959,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-recompute/trajectory_3004.jsonl",
+      "sha256": "dea0fb61e9c62983330f4255d274c7222deb4510979f42f9dadcb3a2cb45da9d"
+    },
+    {
+      "bytes": 55959,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/metrics.prom",
+      "sha256": "3b1fe65784073ba83a62b7d2ff9c02f5831977fc043ccfc2774edc155c3720cd"
+    },
+    {
+      "bytes": 375,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/probe.json",
+      "sha256": "1483ecfc99dd15e5d784d2805322ddaba08a874946ce44d5e75731e99c32fe03"
+    },
+    {
+      "bytes": 2060,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/summary.json",
+      "sha256": "965a41e4b6e88af929ddbd1d23599358c5b9cfcb8d32a701a8b1f8ede8dfd071"
+    },
+    {
+      "bytes": 40244,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/trajectory_3000.jsonl",
+      "sha256": "d1772c9529402bbd2292671a56631a264924a65ac3875dc0abf53fc8fad3351f"
+    },
+    {
+      "bytes": 40684,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/trajectory_3001.jsonl",
+      "sha256": "783dc84f6f89f73f671bdca7179fca095e6a4478173b4a28df76e34a9a8abe2e"
+    },
+    {
+      "bytes": 40517,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/trajectory_3002.jsonl",
+      "sha256": "9f7bea34973aa28f04a6b2a9d0b95f6938e1b1e3d9c0ce1ef5190da57d065612"
+    },
+    {
+      "bytes": 40678,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/trajectory_3003.jsonl",
+      "sha256": "fa947b94b7eb70adcea9abf19cdcb49d4b963b6167f5c154dcd6f87fa1ee312f"
+    },
+    {
+      "bytes": 40962,
+      "kind": "results",
+      "path": "m1-sweep-fp16/config_vllm-fp16-reuse/trajectory_3004.jsonl",
+      "sha256": "3667a88e2ec4066e8b1e797db62fde3df476f1f8c56f27401ae79dd21b5a26a8"
+    },
+    {
+      "bytes": 40261,
+      "kind": "results",
+      "path": "m1-sweep-fp16/logs/vllm-fp16-recompute.server.log",
+      "sha256": "f0e32a158a5f4738a93327b3981badd6517296a231e45b80f1369169524aa733"
+    },
+    {
+      "bytes": 40341,
+      "kind": "results",
+      "path": "m1-sweep-fp16/logs/vllm-fp16-reuse.server.log",
+      "sha256": "3c29770520c0e0737d74fb5a8daaf6662ddcac4dcd6f1bbcbc9bcdc3fd9f13a9"
+    },
+    {
+      "bytes": 1428,
+      "kind": "results",
+      "path": "m1-sweep-fp16/run_meta.json",
+      "sha256": "2c74ea75f74de8562d09b19a8040ada11df8c9c3241b4f49de3e5309ed1b2876"
+    },
+    {
+      "bytes": 229,
+      "kind": "code",
+      "path": "kvdrift/__init__.py",
+      "sha256": "61b6a599170d817af71e560e86703dc5201e830e5b3cbeca86b92e403e9edff7"
+    },
+    {
+      "bytes": 4060,
+      "kind": "code",
+      "path": "kvdrift/client.py",
+      "sha256": "b90a35bd92e7e850b3377edc90d5d2c9a36250276211321e3f5d2972b4261b74"
+    },
+    {
+      "bytes": 21173,
+      "kind": "code",
+      "path": "kvdrift/main.py",
+      "sha256": "a6264189c378532570ab82317278a15825661022b84203521facffa7ee51eee7"
+    },
+    {
+      "bytes": 2638,
+      "kind": "code",
+      "path": "kvdrift/manifest.py",
+      "sha256": "4275c5f1194608e71194dbc7f4e5c657edb254f269fdecc381389bed9559b1e5"
+    },
+    {
+      "bytes": 5097,
+      "kind": "code",
+      "path": "kvdrift/onset.py",
+      "sha256": "a3bb15e3dbad3d9e573f1bc354f879077141555405f9be815d7c69420f1f2b46"
+    },
+    {
+      "bytes": 3401,
+      "kind": "code",
+      "path": "kvdrift/runner.py",
+      "sha256": "bb0ad23a5a93c4ee703e44bc4841901d02a76540a1ba26042baa2896d41fa64d"
+    },
+    {
+      "bytes": 5631,
+      "kind": "code",
+      "path": "kvdrift/scoring.py",
+      "sha256": "3817182ea7b8d04b23d04a57ff045f523d6ac86cbcca8b6d5025b4fc2dd38d84"
+    },
+    {
+      "bytes": 5754,
+      "kind": "code",
+      "path": "kvdrift/serve.py",
+      "sha256": "d181ec51de9a42a403c131a8afe83781cb04bbbaa9431b6f7dd52b6aa753cae6"
+    },
+    {
+      "bytes": 8598,
+      "kind": "code",
+      "path": "kvdrift/trajectory.py",
+      "sha256": "ea0cafef736bc13694a6c97e4fac40ba9a103a0368d596b6592a36ea084c7e24"
+    },
+    {
+      "bytes": 10444,
+      "kind": "code",
+      "path": "kvdrift/warehouse.py",
+      "sha256": "39a84873eb3d7fe399bba8e6fd3d03357e0d2f1014bbc9b46cdd94023a153d6b"
+    }
+  ],
+  "meta": {
+    "created_utc": "2026-08-03T00:33:57Z",
+    "gpu": "NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB",
+    "harness": "kv-drift harness",
+    "matrix_sha256": "eb73823a44ce19ec6b9b7bc274f5bac2d8efbd4761c690bd366b58a9b0f85472",
+    "versions": {
+      "lmdeploy": "0.15.0",
+      "python": "3.12.3",
+      "vllm": "0.26.0"
+    }
+  }
+}

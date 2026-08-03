@@ -1,0 +1,85 @@
+{
+  "config": {
+    "engine": "vllm",
+    "kv": "fp16",
+    "name": "vllm-fp16-recompute",
+    "prefix_caching": false
+  },
+  "trajectories": [
+    {
+      "action_correct_rate": 0.9714,
+      "args_fidelity_mean": 0.9714,
+      "call_present_rate": 0.9714,
+      "exec_error_rate": 0.0,
+      "n_recall_turns": 5,
+      "n_text_turns": 5,
+      "n_tool_turns": 35,
+      "n_turns": 40,
+      "overcall_rate": 0.0,
+      "parse_valid_rate": 1.0,
+      "recall_hit_rate": 1.0,
+      "seed": 3000,
+      "tool_correct_rate": 0.9714
+    },
+    {
+      "action_correct_rate": 1.0,
+      "args_fidelity_mean": 1.0,
+      "call_present_rate": 1.0,
+      "exec_error_rate": 0.0,
+      "n_recall_turns": 5,
+      "n_text_turns": 5,
+      "n_tool_turns": 35,
+      "n_turns": 40,
+      "overcall_rate": 0.0,
+      "parse_valid_rate": 1.0,
+      "recall_hit_rate": 1.0,
+      "seed": 3001,
+      "tool_correct_rate": 1.0
+    },
+    {
+      "action_correct_rate": 1.0,
+      "args_fidelity_mean": 1.0,
+      "call_present_rate": 1.0,
+      "exec_error_rate": 0.0,
+      "n_recall_turns": 5,
+      "n_text_turns": 5,
+      "n_tool_turns": 35,
+      "n_turns": 40,
+      "overcall_rate": 0.0,
+      "parse_valid_rate": 1.0,
+      "recall_hit_rate": 1.0,
+      "seed": 3002,
+      "tool_correct_rate": 1.0
+    },
+    {
+      "action_correct_rate": 1.0,
+      "args_fidelity_mean": 1.0,
+      "call_present_rate": 1.0,
+      "exec_error_rate": 0.0,
+      "n_recall_turns": 5,
+      "n_text_turns": 5,
+      "n_tool_turns": 35,
+      "n_turns": 40,
+      "overcall_rate": 0.0,
+      "parse_valid_rate": 1.0,
+      "recall_hit_rate": 1.0,
+      "seed": 3003,
+      "tool_correct_rate": 1.0
+    },
+    {
+      "action_correct_rate": 1.0,
+      "args_fidelity_mean": 1.0,
+      "call_present_rate": 1.0,
+      "exec_error_rate": 0.0,
+      "n_recall_turns": 5,
+      "n_text_turns": 5,
+      "n_tool_turns": 35,
+      "n_turns": 40,
+      "overcall_rate": 0.0,
+      "parse_valid_rate": 1.0,
+      "recall_hit_rate": 1.0,
+      "seed": 3004,
+      "tool_correct_rate": 1.0
+    }
+  ]
+}

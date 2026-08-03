@@ -1,0 +1,42 @@
+{
+  "finished_utc": "2026-08-03T00:51:44Z",
+  "gpu": "NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB",
+  "lmdeploy": "0.15.0",
+  "matrix": {
+    "comment": "fp8-kv-hopper m1 onset group 'e4m3' (frozen at pre-registration; see research/fp8-kv-hopper/milestone-1.md). Same grid shape as the case study's m4 O-leg: {near,far} x 8 lengths x 20 reps = 320 single-turn probes, seed_base 5000. Single-config group: per-precision isolation.",
+    "configs": [
+      {
+        "engine": "vllm",
+        "kv": "fp8_e4m3",
+        "name": "vllm-fp8e4m3",
+        "prefix_caching": false
+      }
+    ],
+    "gpu_memory_utilization": 0.9,
+    "lengths": [
+      0,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "max_model_len": 16384,
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "modes": [
+      "near",
+      "far"
+    ],
+    "port": 8001,
+    "reps": 20,
+    "seed_base": 5000,
+    "served_name": "kvdrift-model"
+  },
+  "matrix_file": "configs/h100-onset-e4m3.json",
+  "matrix_sha256": "822969cdcc0a003731789d1348939d29b8bcf8d0de4f5ee09dfbcc8bf552a9bf",
+  "python": "3.12.3",
+  "started_utc": "2026-08-03T00:46:12Z",
+  "vllm": "0.26.0"
+}

@@ -1,0 +1,99 @@
+{
+  "files": [
+    {
+      "bytes": 98602,
+      "kind": "results",
+      "path": "m1-onset-fp16/config_vllm-fp16/onset.jsonl",
+      "sha256": "8c26473fd80e676d09ca8e9b65b6350485585dfdbd283ba780bd1324fb7c0580"
+    },
+    {
+      "bytes": 2339,
+      "kind": "results",
+      "path": "m1-onset-fp16/config_vllm-fp16/summary.json",
+      "sha256": "9aa94ef8d44b926c1622abdc8b416381a45444f9ab10acf918adb821bc5cf627"
+    },
+    {
+      "bytes": 51939,
+      "kind": "results",
+      "path": "m1-onset-fp16/logs/vllm-fp16.server.log",
+      "sha256": "18789eebaca5dbc994ca809fa1c051697d0fbe2cef55a4a73d26919c39a23d9c"
+    },
+    {
+      "bytes": 1163,
+      "kind": "results",
+      "path": "m1-onset-fp16/run_meta.json",
+      "sha256": "10aecd688e4841bf7a954a2122919322c4537f8b9f3abd9ac1c800629dc943c0"
+    },
+    {
+      "bytes": 229,
+      "kind": "code",
+      "path": "kvdrift/__init__.py",
+      "sha256": "61b6a599170d817af71e560e86703dc5201e830e5b3cbeca86b92e403e9edff7"
+    },
+    {
+      "bytes": 4060,
+      "kind": "code",
+      "path": "kvdrift/client.py",
+      "sha256": "b90a35bd92e7e850b3377edc90d5d2c9a36250276211321e3f5d2972b4261b74"
+    },
+    {
+      "bytes": 21173,
+      "kind": "code",
+      "path": "kvdrift/main.py",
+      "sha256": "a6264189c378532570ab82317278a15825661022b84203521facffa7ee51eee7"
+    },
+    {
+      "bytes": 2638,
+      "kind": "code",
+      "path": "kvdrift/manifest.py",
+      "sha256": "4275c5f1194608e71194dbc7f4e5c657edb254f269fdecc381389bed9559b1e5"
+    },
+    {
+      "bytes": 5097,
+      "kind": "code",
+      "path": "kvdrift/onset.py",
+      "sha256": "a3bb15e3dbad3d9e573f1bc354f879077141555405f9be815d7c69420f1f2b46"
+    },
+    {
+      "bytes": 3401,
+      "kind": "code",
+      "path": "kvdrift/runner.py",
+      "sha256": "bb0ad23a5a93c4ee703e44bc4841901d02a76540a1ba26042baa2896d41fa64d"
+    },
+    {
+      "bytes": 5631,
+      "kind": "code",
+      "path": "kvdrift/scoring.py",
+      "sha256": "3817182ea7b8d04b23d04a57ff045f523d6ac86cbcca8b6d5025b4fc2dd38d84"
+    },
+    {
+      "bytes": 5754,
+      "kind": "code",
+      "path": "kvdrift/serve.py",
+      "sha256": "d181ec51de9a42a403c131a8afe83781cb04bbbaa9431b6f7dd52b6aa753cae6"
+    },
+    {
+      "bytes": 8598,
+      "kind": "code",
+      "path": "kvdrift/trajectory.py",
+      "sha256": "ea0cafef736bc13694a6c97e4fac40ba9a103a0368d596b6592a36ea084c7e24"
+    },
+    {
+      "bytes": 10444,
+      "kind": "code",
+      "path": "kvdrift/warehouse.py",
+      "sha256": "39a84873eb3d7fe399bba8e6fd3d03357e0d2f1014bbc9b46cdd94023a153d6b"
+    }
+  ],
+  "meta": {
+    "created_utc": "2026-08-03T00:46:11Z",
+    "gpu": "NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB",
+    "harness": "kv-drift onset probe",
+    "matrix_sha256": "d84bfc696a85deb4449622004d7469482f35c764b3bbed96781b596c835785a9",
+    "versions": {
+      "lmdeploy": "0.15.0",
+      "python": "3.12.3",
+      "vllm": "0.26.0"
+    }
+  }
+}
