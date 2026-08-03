@@ -1,0 +1,32 @@
+{
+  "comment": "fp8-kv-hopper m1 onset group 'fp16' (frozen at pre-registration; see research/fp8-kv-hopper/milestone-1.md). Same grid shape as the case study's m4 O-leg: {near,far} x 8 lengths x 20 reps = 320 single-turn probes, seed_base 5000. Single-config group: per-precision isolation.",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "served_name": "kvdrift-model",
+  "port": 8001,
+  "seed_base": 5000,
+  "reps": 20,
+  "modes": [
+    "near",
+    "far"
+  ],
+  "lengths": [
+    0,
+    128,
+    256,
+    512,
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "max_model_len": 16384,
+  "gpu_memory_utilization": 0.9,
+  "configs": [
+    {
+      "name": "vllm-fp16",
+      "engine": "vllm",
+      "kv": "fp16",
+      "prefix_caching": false
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comment": "fp8-kv-hopper m1 sweep group 'e5m2' (frozen at pre-registration; see research/fp8-kv-hopper/milestone-1.md). Exact case-study conditions on H100 SXM (sm_90): vLLM 0.26.0, seeds 3000-3004, 40 turns, max_tokens 192, max_model_len 24576. Run groups are split per precision so an engine-level crash in one precision (registered possible outcome on sm_90, cf. vllm#31843) cannot destroy the manifested evidence of the others.",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "served_name": "kvdrift-model",
+  "port": 8001,
+  "preflight": true,
+  "trajectories": 5,
+  "turns": 40,
+  "seed_base": 3000,
+  "max_model_len": 24576,
+  "max_tokens": 192,
+  "gpu_memory_utilization": 0.9,
+  "configs": [
+    {
+      "name": "vllm-fp8e5m2-reuse",
+      "engine": "vllm",
+      "kv": "fp8_e5m2",
+      "prefix_caching": true
+    },
+    {
+      "name": "vllm-fp8e5m2-recompute",
+      "engine": "vllm",
+      "kv": "fp8_e5m2",
+      "prefix_caching": false
+    }
+  ]
+}
