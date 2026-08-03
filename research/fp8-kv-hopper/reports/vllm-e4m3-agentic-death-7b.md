@@ -9,9 +9,9 @@ fluent prose, zero parseable tool calls
 With `--kv-cache-dtype fp8_e4m3` (calibration-free, default scale 1.0)
 on an H100 SXM, Qwen2.5-7B-Instruct served by vLLM 0.26.0 stops
 emitting parseable tool calls **entirely**: zero `tool_calls` across
-800 multi-turn agent trajectory turns (5 seeds × 40 turns × prefix
+400 multi-turn agent trajectory turns (5 seeds × 40 turns × prefix
 caching on/off) and 0/320 single-turn probes at context lengths from
-~1k to ~9k prompt tokens (hermes parser, `--enable-auto-tool-choice`).
+~1k to ~8.2k prompt tokens (hermes parser, `--enable-auto-tool-choice`).
 Free-text output stays fluent — a coherence probe passes — but carries
 character-level copy corruption (an exact-echo request for
 `KVDRIFT-VLLM-FP8E4M3-REUSE-7429` returns
@@ -32,8 +32,8 @@ smoke test shows a healthy server while every tool call dies.
 
 ## Environment
 
-- vLLM 0.26.0 (pip wheel), torch 2.11.0, Python 3.12
-- NVIDIA H100 80GB HBM3 (sm_90), driver 580.126.09, CUDA 13.0
+- vLLM 0.26.0 (pip wheel; torch as pulled by its dependencies), Python 3.12
+- NVIDIA H100 80GB HBM3 (sm_90), driver 580.126.09 (CUDA 13.0 per nvidia-smi)
 - Model: `Qwen/Qwen2.5-7B-Instruct` (unquantized weights)
 - Serve: `vllm serve Qwen/Qwen2.5-7B-Instruct --kv-cache-dtype
   fp8_e4m3 --max-model-len 24576 --enable-auto-tool-choice

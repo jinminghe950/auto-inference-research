@@ -1,6 +1,6 @@
 # 002 — Does vLLM fp8-KV tool-calling death persist on Hopper?
 
-status: active (milestone 1 pre-registered; see research/fp8-kv-hopper/)
+status: done (m1 executed, audited, refereed; paper + upstream drafts in research/fp8-kv-hopper/)
 value: The case study found vLLM fp8_e5m2 KV kills the tool-call channel
 outright for Qwen2.5-7B on Ada (4090) and Ampere (A100) — but Hopper
 (H100) has dedicated fp8 attention paths and is where fp8-KV is actually

@@ -33,13 +33,15 @@ model load.
 
 ## Environment
 
-- vLLM 0.26.0 (pip wheel), torch 2.11.0, Python 3.12
-- NVIDIA H100 80GB HBM3, driver 580.126.09, CUDA 13.0
+- vLLM 0.26.0 (pip wheel; torch as pulled by its dependencies), Python 3.12
+- NVIDIA H100 80GB HBM3, driver 580.126.09 (CUDA 13.0 per nvidia-smi)
 - Model: `Qwen/Qwen2.5-7B-Instruct` (unquantized)
 - Serve: `vllm serve Qwen/Qwen2.5-7B-Instruct --kv-cache-dtype
   fp8_e5m2 --max-model-len 24576 --enable-auto-tool-choice
-  --tool-call-parser hermes --seed 0` (also crashes without the tool
-  flags; crash is during FlashInfer autotune warmup)
+  --tool-call-parser hermes --seed 0` (both reproduced starts included
+  the tool flags; the crash occurs during FlashInfer autotune warmup,
+  before any request is served, so the tool flags are very likely
+  irrelevant — not separately tested)
 
 ## Related issues
 

@@ -15,13 +15,14 @@ architecture where fp8 KV cache is actually marketed, and where vLLM's
 April 2026 blog declares calibration-free fp8 KV "ready to be the
 default starting point" — was the untested cell. We ran a
 pre-registered probe-and-sweep milestone on one H100 SXM (vLLM 0.26.0,
-the latest release at execution time) and found the failure surface is
-worse than either registered prediction, in two different ways. First,
-**e5m2 cannot start at all under vLLM's default backend selection on
-sm_90**: FlashInfer's FP8-Q prefill is planned with `q_data_type=e5m2`
-while vLLM quantizes queries to `float8_e4m3fn`, and the engine core
-dies during warmup with a dtype-mismatch ValueError — a loud,
-previously unreported regression in the current release. Second, and
+the latest release at execution time) and found the failure surface
+lands simultaneously on the two worst branches of the registered
+prediction space. First, **e5m2 cannot start under vLLM's default
+backend selection on sm_90**: FlashInfer's FP8-Q prefill is planned
+with `q_data_type=e5m2` while vLLM quantizes queries to
+`float8_e4m3fn`, and the engine core dies during warmup with a
+dtype-mismatch ValueError — a loud regression in the current release,
+apparently unreported (dated tracker search). Second, and
 more consequentially for operators: **calibration-free e4m3 — the
 exact configuration the blog markets, on the native FlashAttention-3
 fp8 path — silently zeroes the tool-call channel for this model**:
@@ -59,14 +60,20 @@ regime-classification rule were frozen and committed before any data
 existed (commit 71bba72; evidence landed in afd988f; the commit
 ordering is the pre-registration proof). The registered classification
 rule was validated, before registration, against the case study's A100
-artifacts, reproducing its published numbers exactly.
+artifacts, reproducing its published numbers exactly (re-executed
+independently by the audit's evidence critic; the calibration inputs
+live in the case-study repository, so this one claim is not
+machine-checkable from this repo alone).
 
 ## 2. Method (summary)
 
-One H100 SXM 80GB (sm_90; driver 580.126.09, CUDA 13.0), vLLM 0.26.0,
-Qwen/Qwen2.5-7B-Instruct, greedy decoding
-[[art:runs/m1-sweep-fp16/run_meta.json@2c74ea75]]. Six independent run
-groups, split per precision so an engine-level crash in one cannot
+One H100 SXM 80GB (sm_90), driver 580.126.09, vLLM 0.26.0, Python
+3.12, Qwen/Qwen2.5-7B-Instruct
+[[art:runs/m1-sweep-fp16/run_meta.json@2c74ea75]]; host CUDA 13.0 per
+the operational nvidia-smi record; greedy decoding (temperature 0 —
+the frozen client default, hash-manifested as code with each group
+[[art:runs/m1-sweep-fp16/manifest.json@88dd5a5f]]). Six independent
+run groups, split per precision so an engine-level crash in one cannot
 destroy another's manifested evidence:
 
 - **Sweep groups** ({fp16, e4m3, e5m2} × {reuse, recompute} × 5 seeds
@@ -78,19 +85,23 @@ destroy another's manifested evidence:
   (0–8192 filler tokens) × 20 reps = 320 single-turn copy-fidelity
   probes each; gates: full row count + content-addressed manifest).
 
-Every group carries a sha256 manifest over results and harness code;
-gates were verified on-pod and re-verified locally on the collected
-copies. Analysis is the repo-frozen `analyze.py` (bootstrap CIs over
-seeds) plus the pre-registered `analyze_m1.py` classifier
+The four groups that produced data carry sha256 manifests over
+results and harness code, with gates verified on-pod (operational
+record) and re-verified locally on the collected copies — the local
+verdict is the one reported; the two e5m2 groups died before manifest
+creation and are evidenced by their hash-pinned server logs. Analysis
+is the repo-frozen `analyze.py` (bootstrap CIs over seeds) plus the
+pre-registered `analyze_m1.py` classifier
 [[art:runs/analysis-m1.json@83bec634]]. Total GPU cost: **$1.71**
-(34 min × $2.99/hr). An adversarial audit (three critics, two-skeptic
+(pod interval 00:22:26–00:56:48 UTC ≈ 34.4 min × $2.99/hr;
+operational record). An adversarial audit (three critics, two-skeptic
 verification, AUDIT.md protocol) ran on the landed evidence; three
 confirmed objections were fixed in a logged revision (milestone doc
 §Audit) — the claims below are the post-audit, scoped versions.
 
 ## 3. Results
 
-### 3.1 e5m2 on H100: a loud, unreported startup regression
+### 3.1 e5m2 on H100: a loud, apparently-unreported startup regression
 
 Both attempted e5m2 engine starts (sweep-reuse and the onset config)
 died identically during FlashInfer autotune warmup, before serving a
@@ -101,7 +112,7 @@ record: backend auto-selection to FLASHINFER "out of potential
 backends: ['FLASHINFER', 'TRITON_ATTN']" (FLASH_ATTN categorically
 rejects e5m2); the FP8-Q resolution line
 `prefill=torch.float8_e5m2, decode=torch.bfloat16, decode_backend=xqa,
-arch=sm90`; then
+kv_cache_dtype=torch.float8_e5m2, arch=sm90`; then
 
 ```
 ValueError: The dtype of q torch.float8_e4m3fn does not match the
@@ -111,9 +122,10 @@ RuntimeError: Engine core initialization failed.
 
 vLLM plans the FlashInfer prefill kernel to expect e5m2 queries but
 its query-quantization op emits `float8_e4m3fn` unconditionally. The
-machine-captured marker stream confirms the sweep group exited
-nonzero and the run ended with exit code 1
-[[art:runs/m1-monitor-events.log@4c71b225]].
+machine-captured marker stream confirms the sweep group exited nonzero
+(`SWEEP_e5m2_EXIT=1`) [[art:runs/m1-monitor-events.log@4c71b225]];
+the onset crash is independently evidenced by its own server log,
+which records a separate engine start dying with the identical error.
 
 **Scope** (post-audit): this establishes that as-shipped, out-of-the-box
 `--kv-cache-dtype fp8_e5m2` fails loudly at startup on H100 at v0.26.0
@@ -143,11 +155,17 @@ manifested log
 
 | metric (pooled over both cache modes) | fp16 | e4m3 |
 |---|---|---|
-| trajectory action_error (95% CI per config) | 0.006 [0.000, 0.017] | **1.000 [1.000, 1.000]** |
+| trajectory action_error (95% CI per config) | 0.006 [0.000, 0.017] | **1.000 [1.000, 1.000]**† |
 | trajectory no_call | 0.006 | **1.000** |
 | onset call_present, all 16 cells | 1.00 | **0.00** |
 | onset sku_exact, all 16 cells | 1.00 | **0.00** |
 | G0 coherence probe (fluent prose) | pass | pass |
+
+† The e4m3 seed-bootstrap interval is degenerate (every seed at the
+floor); an exact binomial 95% lower bound on 400/400 failed tool turns
+is ≈0.991. Point estimates are pooled over both cache modes (frozen
+classifier); CIs are per config (frozen `analyze.py`) — here the
+per-config aggregates equal the pooled values.
 
 Trajectory evidence: 5 seeds × 40 turns × two cache modes, gates
 G0–G3 PASS, manifested
@@ -164,12 +182,16 @@ are counted): there is no depth compounding and no context cliff — the
 channel is dead on arrival.
 
 The failure is **silent and structural**, not call suppression: the
-G0 probe passes word-overlap coherence (8/9) while its recorded copy
-channel shows character-level corruption — the exact-echo request for
+G0 probe passes word-overlap coherence with a byte-perfect echo of the
+probe sentence (overlap 8 of a maximum 8 distinct words; gate
+threshold ≥6) while its recorded copy channel shows character-level
+corruption — the exact-echo request for
 `KVDRIFT-VLLM-FP8E4M3-REUSE-7429` returns
 `KVDRIFT-VLLM-FPPEE4MPPREUSEP4P`
 [[art:runs/m1-sweep-e4m3/config_vllm-fp8e4m3-reuse/probe.json@bd822795]]
-[[art:runs/m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/probe.json@dce5f804]]
+(the recompute twin corrupts its own nonce the same way,
+`...FPPEE4MPPRECOMPUTEPP4P`
+[[art:runs/m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/probe.json@dce5f804]])
 — and tool turns emit mangled call markup (e.g.
 `<functionlookup_item', {"sku": "5555>>`, trajectory_3000 turn 0
 [[art:runs/m1-sweep-e4m3/config_vllm-fp8e4m3-recompute/trajectory_3000.jsonl@d3ff0540]])
@@ -225,12 +247,17 @@ backend selection; TRITON_ATTN was not exercised, so a silent e5m2
 regime on Hopper via override remains possible. The e5m2-recompute
 config was never launched (its group aborted at the first config's
 startup crash). fp16 and e4m3 trajectory denominators differ (350 vs
-400 tool turns) because the scripted turn-7 recall probe only replaces
-a tool turn after a successful lookup, which never occurs under e4m3;
-e4m3 is dead at turn 0 where prompts are byte-identical across arms,
-and the larger denominator is conservative. Quality claims are about
-the agentic/structured channel of this instrument; we did not measure
-reasoning benchmarks.
+400 tool turns): the scripted recall probes (turns 7, 15, 23, 31, 39 —
+every 8th turn, five per trajectory) each replace a tool turn only
+after an earlier successful lookup, which never occurs under e4m3, so
+50 of the fp16 arms' 400 turns become free-text recall turns while all
+400 e4m3 turns stay tool turns; e4m3 is dead at turn 0 where prompts
+are byte-identical across arms, and the larger denominator is
+conservative. (This also means the harness docstring's claim that
+instruction text is a pure function of the seed is imprecise — turn
+*kind* is model-behavior-dependent from turn 7 on.) Quality claims are
+about the agentic/structured channel of this instrument; we did not
+measure reasoning benchmarks.
 
 ## 5. What operators and upstream should take away
 

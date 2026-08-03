@@ -316,7 +316,8 @@ death signature exactly, at 7B, on the agentic channels:
   including the minimum tested context (length-0 cells measure ~1.0k
   prompt tokens once tool schemas + system prompt are counted) — no
   context cliff; the channel is dead at the shortest tested prompt.
-- **Silence**: G0 coherence passes (word overlap 8/9 — fluent prose).
+- **Silence**: G0 coherence passes (word overlap 8 of a maximum 8
+  distinct words — a byte-perfect echo of the probe sentence).
   The probe records the phenomenology: exact-echo of
   `KVDRIFT-VLLM-FP8E4M3-REUSE-7429` returns
   `KVDRIFT-VLLM-FPPEE4MPPREUSEP4P` (character-level copy corruption),
@@ -440,3 +441,46 @@ Advisory (recorded, non-gating; incorporated where marked):
   cross-repo artifacts remain in jinminghe950/agentic-research).
 
 Audit rounds used: 1 of ≤3. GPU cost of audit: $0.
+
+## Referee pass (paper; commit audited: 48bdc21)
+
+Panel per AUDIT.md on `paper/paper.md` + the two upstream report
+drafts: claim inventory (22 claims) → three parallel critics. All three
+recomputed from raw artifacts (G-cite re-run PASS 20/20; gates re-run
+PASS at HEAD; frozen classifier reproduced byte-identically; every
+rate, CI, cell, and verbatim quote re-derived from JSONL/logs).
+
+**Verdict: 0 blocking objections against the paper's conclusions; 2
+blocking objections against the report drafts, conceded without
+contest after direct mechanical re-verification, and fixed together
+with 10 advisories in this revision.**
+
+Conceded blocking (report drafts):
+
+- The e4m3 draft claimed "800 trajectory turns" (this run produced
+  400; 800 was the case study's figure) and "~1k to ~9k prompt tokens"
+  (measured max 8175). Corrected to 400 / ~8.2k.
+- The e5m2 draft asserted "(also crashes without the tool flags" —
+  untested (both preserved starts had the flags). Reworded as an
+  explicit inference, not an observation.
+
+Advisories incorporated: abstract/§3.1 "unreported" hedged to
+"apparently unreported (dated tracker search)"; "worse than either
+registered prediction" reframed (both outcomes were inside the
+registered space — what happened is the two worst registered branches
+co-occurred); §2 manifest/gate claim scoped to the four data-producing
+groups with on-pod verification marked operational; greedy-decoding
+citation re-anchored to the manifested client code, CUDA version
+marked operational; degenerate e4m3 CI labeled (exact binomial 95%
+lower bound ≈0.991 on 400/400) and the pooled/per-config analyzer
+hybrid stated; coherence probe corrected from "8/9" to 8-of-8 (the
+pangram has 8 distinct words; the echo was byte-perfect — stronger
+than previously stated); recompute-probe citation scoped to its own
+corrupted nonce; recall-probe schedule corrected (turns 7, 15, 23, 31,
+39 — 50 replaced turns across the fp16 arms) with the harness
+docstring imprecision surfaced; confounded RUN_FINISHED exit-code
+corroboration dropped in favor of the SWEEP marker + onset server log;
+cost restated with its operational provenance; the cross-repo
+analyzer-calibration claim marked not machine-checkable from this repo.
+
+Referee rounds used: 1. GPU cost: $0.
