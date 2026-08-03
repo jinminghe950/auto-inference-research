@@ -203,6 +203,20 @@ attention. Program spend to date: $0.
   the live run.log before the overwrite, quoted in §Results. All
   scientific artifacts (trajectories, probes, onset rows, server logs,
   manifests, run_meta) never lived in run.log and are unaffected.
+- **A2 (2026-08-03, audit revision round 1 — provenance fix).** The
+  frozen analysis plan's step 1 (repo-frozen `analyze.py`) writes its
+  derived `analysis.json` into the results directory by default; running
+  it after local gate verification left an unmanifested derived file
+  inside each sweep group's content-addressed directory, so the frozen
+  `verify` command failed G3 on the committed tree (audit objection B1,
+  confirmed by two skeptics). Fix: the two derived files were **moved**
+  (bytes unchanged; both critics reproduced them byte-identically from
+  the frozen analyzer) to `runs/analysis/m1-sweep-{fp16,e4m3}.analysis.json`,
+  outside the manifested dirs — matching the step-2 analyzer's correct
+  root-level placement. After the move the frozen command reproduces
+  G0–G4 PASS (fp16) and G0–G3 PASS (e4m3) from the committed tree. No
+  raw evidence file was touched; no frozen file changed; the plan named
+  the tool, not the output path — placement was an execution error.
 
 ## Results (frozen analyzers; artifacts in `runs/`)
 
@@ -227,11 +241,17 @@ Registered classification (frozen `analysis/analyze_m1.py`, output
 **e5m2 regime on sm_90 = ERROR**; **e4m3 label = PERSISTS**. The
 milestone-2 condition (MIXED) is **not triggered**.
 
-### e5m2: vLLM 0.26.0 cannot serve `fp8_e5m2` on H100 at all
+### e5m2: vLLM 0.26.0 cannot serve `fp8_e5m2` on H100 under its default backend selection
 
-Both e5m2 groups died identically during FlashInfer autotune warmup,
-before serving a single request. Root cause from the manifested server
-log (`runs/m1-sweep-e5m2/logs/vllm-fp8e5m2-reuse.server.log`, sha256
+Both attempted e5m2 engine starts (the sweep group's first config,
+vllm-fp8e5m2-reuse, and the single onset config; the registered
+recompute config was never reached because the sweep aborted at its
+first config) died identically during FlashInfer autotune warmup,
+before serving a single request. The e5m2 groups have **no group
+manifest** — the harness writes manifests at run end and died first —
+so their server logs are hash-pinned here instead of by a manifest.
+Root cause from the preserved server log
+(`runs/m1-sweep-e5m2/logs/vllm-fp8e5m2-reuse.server.log`, sha256
 424aeacf…; onset twin 221a258e…):
 
 ```
@@ -249,14 +269,31 @@ RuntimeError: Engine core initialization failed.
 On sm_90 the FP8-Q prefill path plans FlashInfer with
 `q_data_type=e5m2` (following the KV dtype) but vLLM's query
 quantization emits `float8_e4m3fn` unconditionally; FlashInfer's dtype
-check rejects the mismatch and the engine core dies. The operational
-traceback (captured from the live run.log before the A1 overwrite):
-`serve.py line 107: RuntimeError: vllm exited during startup (code 1)`,
-for both the sweep (`SWEEP_e5m2_EXIT=1`) and onset
-(`ONSET_e5m2_EXIT=1`) groups. So the Ada/Ampere silent killer is not
-reachable on Hopper at v0.26.0 — the flag fails **loudly** (an
-unreported upstream bug: the latest release cannot serve e5m2 on the
-hardware where fp8-KV is marketed).
+check rejects the mismatch and the engine core dies. Operational
+markers: `SWEEP_e5m2_EXIT=1` and the final `RUN_FINISHED exit_code 1`
+are machine-captured in `runs/m1-monitor-events.log`; the
+`ONSET_e5m2_EXIT=1` marker and the harness traceback line
+(`serve.py line 107: RuntimeError: vllm exited during startup (code
+1)`) were observed in the live run.log before the A1 overwrite and
+survive **only in this prose capture** — the onset crash itself is
+independently proven by the preserved onset server log (221a258e…),
+which records a separate engine start dying with the identical
+ValueError, and by the frozen `serve.py` raise site the quote matches.
+
+Scope of the claim: the crash occurred under vLLM's **default backend
+selection** — both logs show `auto` resolving to FLASHINFER "out of
+potential backends: ['FLASHINFER', 'TRITON_ATTN']" — and the
+TRITON_ATTN override path was **not exercised** (it is outside the
+frozen matrix). So what m1 establishes is: as-shipped, out-of-the-box
+`--kv-cache-dtype fp8_e5m2` on H100 fails loudly at startup at v0.26.0;
+whether a non-default backend override could still serve (and what
+quality it would produce) is unmeasured. Upstream status (dated search:
+`notes/e5m2-crash-upstream-search.md`): this specific FlashInfer
+q-dtype planning regression **appears unreported**; the broader "e5m2
+accepted by CLI, crash at engine init on H100" class has prior lineage
+(vllm#42587, fixed by #42685 before 0.26.0 — the fix is why FLASH_ATTN
+correctly rejects e5m2 here — and the stale sm_90 fp8 JIT failure
+#31843).
 
 ### e4m3: the marketed path silently kills tool calling completely
 
@@ -269,9 +306,16 @@ death signature exactly, at 7B, on the agentic channels:
 - **Trajectories** (5 seeds × 40 turns × both cache modes, G0–G3 PASS):
   action_error **1.000 [1.000, 1.000]**, no_call 1.000, in every turn
   bin — flat from turn 0, no depth compounding. fp16 twin: 0.006.
+  Denominator note: fp16 has 350 scoreable tool turns vs e4m3's 400 —
+  the scripted turn-7 recall probe only replaces a tool turn after an
+  earlier successful lookup, which never happens under e4m3; the
+  contrast is unaffected (e4m3 is dead at turn 0, where prompts are
+  byte-identical across arms) and the larger denominator is
+  conservative for the 1.000 estimate.
 - **Onset** (320 probes): call_present **0.00 in all 16 cells**,
-  including the ~40-token minimum context — no context cliff; the
-  channel is dead on arrival.
+  including the minimum tested context (length-0 cells measure ~1.0k
+  prompt tokens once tool schemas + system prompt are counted) — no
+  context cliff; the channel is dead at the shortest tested prompt.
 - **Silence**: G0 coherence passes (word overlap 8/9 — fluent prose).
   The probe records the phenomenology: exact-echo of
   `KVDRIFT-VLLM-FP8E4M3-REUSE-7429` returns
@@ -285,24 +329,38 @@ Attribution is tuple-scoped per METHOD.md: (vLLM 0.26.0, H100 sm_90,
 FA3 native-fp8 path, Qwen2.5-7B-Instruct, calibration-free e4m3) →
 total silent agentic death. Combined with the case study's
 (0.26.0, sm_89/sm_80, FlashInfer FA2 dequant path, e5m2) → same death,
-the silent failure now spans both fp8 formats and three attention
-kernel families for this model, consistent with the model-conditional
-numerics interpretation (Qwen2.5-7B KV outlier structure vs
-calibration-free scale-1.0 fp8) rather than any single kernel defect —
-though this milestone alone cannot exclude an FA3-specific numeric bug;
-the mechanism claim inherits the case study's cross-condition evidence.
+the silent failure now spans both fp8 formats and **two** attention
+kernel families for this model (the third candidate path — FlashInfer
+FP8-Q/XQA with e5m2 on sm_90 — failed loudly at startup and so
+contributes nothing to the *silent* span). Two independent
+format×kernel-family combinations are consistent with the
+model-conditional numerics interpretation (Qwen2.5-7B KV outlier
+structure vs calibration-free scale-1.0 fp8) rather than a single
+kernel defect — though this milestone alone cannot exclude an
+FA3-specific numeric bug; the mechanism claim inherits the case
+study's cross-condition evidence. The frozen classifier's e4m3 label
+"PERSISTS" is defined by the dead-channel signature (zero calls at all
+onset cells + trajectory no_call ≥ 0.99), not by continuity with the
+case study's e4m3-on-Ada result (which was token salad at vLLM 0.19.1,
+a different regime at a different version): what "persists" on Hopper
+is the silent-death *shape*, carried by the other fp8 format.
 
 ### Answer to the milestone questions
 
-- **Q1 (persistence)**: not persistence but **escalation-to-loud**:
-  e5m2 is unserveable on sm_90 (ERROR), so the silent regime is
-  Ada/Ampere-specific for e5m2 — by accident of a dtype-plumbing bug,
-  not by numerics.
+- **Q1 (persistence)**: not persistence but **escalation-to-loud**
+  under the default path: e5m2 fails at startup on sm_90 (ERROR) under
+  vLLM's default backend selection, so the silent e5m2 regime was not
+  observable on Hopper in this design — by accident of a dtype-plumbing
+  bug, not by numerics. (Whether a non-default backend override could
+  reach a silent e5m2 regime on sm_90 is unmeasured.)
 - **Q2 (marketed-path audit)**: calibration-free e4m3 on Hopper —
   vLLM's recommended default-ready configuration — **silently zeroes
-  the tool-call channel at 7B** while the blog's reasoning benchmarks
-  (≥8B, no structured output) show near-lossless. The "near-lossless"
-  claim does not transfer to the agentic channel at this scale.
+  the tool-call channel for Qwen2.5-7B-Instruct** while the blog's
+  reasoning benchmarks (≥8B, different models, no structured output)
+  show near-lossless. The "near-lossless" claim does not transfer to
+  the agentic channel for this model (n=1 model; the favored mechanism
+  predicts the failure is model-conditional, so other 7B-class models
+  may well match the blog — untested here).
 - **Q3 (attribution)**: backend selection captured per leg from
   manifested logs: fp16→FLASH_ATTN, e4m3→FLASH_ATTN/FA3 (native fp8),
   e5m2→FLASHINFER (FP8-Q, crash). Note the deployed priority list
@@ -315,3 +373,70 @@ the mechanism claim inherits the case study's cross-condition evidence.
 Pod 00:22:26–00:56:48 UTC ≈ 0.57 h × $2.99 ≈ **$1.71** (vs $15
 stop-loss; $7–9 estimate — the e5m2 crashes refunded ~40 min of
 projected serving time). Program GPU spend to date ≈ **$1.71** of $150.
+
+## Audit (per AUDIT.md; commit audited: afd988f)
+
+Panel: claim inventory (23 claims) → three parallel critics (evidence,
+methods, provenance) → two independent skeptics per blocking objection.
+Every critic recomputed from raw artifacts: all pinned sha256s
+re-verified; frozen analyzers re-executed byte-identically
+(analysis-m1.json, both sweep analysis.json files); action_error /
+no_call / all 32 onset cells recomputed from raw JSONL with independent
+scripts; the C21 calibration run re-executed against the case-study A100
+artifacts (PASS/PERSISTS/0.003/1.000 reproduced); server-log quotes
+verified verbatim; git ordering verified (42f5677 00:13 → 71bba72 00:16
+→ afd988f 01:00, linear, no rewrites, frozen files untouched after
+pre-registration).
+
+**Verdict: 3 confirmed blocking objections → revision round 1 (this
+commit). Post-revision, all three are addressed; no machine gate was
+overridden.**
+
+Confirmed blocking (each upheld by 2/2 skeptics):
+
+- **B1 — committed tree failed its own G3 gate**: the step-1 analyzer's
+  derived analysis.json was written into the manifested sweep dirs
+  after local verification, so `kvdrift verify` failed G3 at the landing
+  commit. Fixed by amendment A2 (files moved out; frozen command now
+  reproduces PASS from the tree). All raw artifacts hash-verified clean
+  throughout — the defect was placement of a derived file, not data
+  integrity.
+- **B2 — "three attention kernel families" over-counted**: the silent
+  failure is evidenced in exactly two families (FlashInfer FA2
+  dequant-on-load: case-study e5m2 on sm_89/sm_80; FA3 native fp8: e4m3
+  here); the FP8-Q/XQA path crashed before serving and cannot carry a
+  silent span. Sentence corrected to "two", with the loud-failure
+  caveat, and the PERSISTS-label semantics clarified.
+- **B4 — e5m2 universality + "unreported" overclaim**: "cannot serve on
+  H100 at all" claimed the fate of the untested TRITON_ATTN override,
+  and "unreported upstream" lacked a post-discovery search artifact
+  (skeptic search surfaced vllm#42587/#42685 as the phenomenon-class
+  lineage, while confirming the specific q-dtype regression appears
+  unreported). Rescoped to default backend selection; dated search note
+  landed as notes/e5m2-crash-upstream-search.md; Q1 answer rescoped.
+
+Unconfirmed blocking (1/2 skeptics; recorded, non-gating):
+
+- **B3 — ONSET_e5m2_EXIT / traceback provenance**: the doc's provenance
+  labeling ("captured from the live run.log before the A1 overwrite")
+  was ruled honest and the ERROR conclusion independent of the contested
+  strings; the advisory residue (mark the ONSET marker as surviving only
+  in prose) is incorporated in the revised §Results anyway.
+
+Advisory (recorded, non-gating; incorporated where marked):
+
+- A1 screened **legitimate** by the provenance critic (infra fix, not
+  result-shopping). e5m2 logs are doc-hash-pinned, not group-manifested
+  (now stated explicitly). fp16-vs-e4m3 tool-turn denominators differ
+  350 vs 400 via the state-dependent turn-7 recall probe (now disclosed;
+  also: the harness docstring's "pure function of seed" claim is
+  imprecise — carried to the write-up milestone). Onset length-0 cells
+  measure ~1.0k prompt tokens with schemas (now corrected). Q2 scoped to
+  the model, not the scale (now corrected). C1/C23 pod metadata and cost
+  are operational narrative with no artifact (accepted as such;
+  METHOD.md requires cost reporting). The pre-registration's analyzer
+  calibration claim was re-executed successfully by the evidence critic
+  against the case-study repo but is not committed here (accepted:
+  cross-repo artifacts remain in jinminghe950/agentic-research).
+
+Audit rounds used: 1 of ≤3. GPU cost of audit: $0.
